@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ZOO Animals</title>
+    <meta name="description" content="An app about random animals from the zoo.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="msapplication-TileColor" content="#cce7ff">
+    <meta name="theme-color" content="#44c8f5">
+
+    <link rel="icon" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/screen.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="/script/app.js"></script>
+</head>
+
+<body>
+    <div class="popup">
+        <h2>ZOO Animals</h2>
+        <button class="js-oneAnimal">Get one animal</button>
+        <button class="js-multipleAnimals">Get multiple animals</button><select class="popup-select js-totalAnimals"
+            name="total_animals">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+    <div class="o-grid-container">
+        <div class="o-grid-item-header">
+            <header class="u-line navigatie">
+                <div class="o-container">
+                    <div class="c-header">
+                        <div class="c-header__Logo">
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="o-grid-item"></div>
+        <div class="o-grid-item-title">
+            <div class="o-layout o-layout--justify-center o-layout--align-center">
+                <h2 class="c-lead c-lead--xl u-title">
+                    Animals
+                </h2>
+            </div>
+        </div>
+        <div class="o-grid-item"></div>
+    </div>
+    <div class="o-grid-container-animals js-animals">
+
+        <div class="o-grid-item"></div>
+    </div>
+</body>
+
+</html>
