@@ -22,6 +22,15 @@ const popUpChoise = function () {
   });
 };
 
+function openForm(chosenanimal) {
+  document.getElementById('myForm').style.display = 'block';
+  console.log(chosenanimal);
+}
+
+function closeForm() {
+  document.getElementById('myForm').style.display = 'none';
+}
+
 const ShowAnimals = function (jsonObject) {
   console.log(jsonObject);
   try {
@@ -30,7 +39,7 @@ const ShowAnimals = function (jsonObject) {
       html += `<div class="o-grid-item-animalcard">
             <div class="o-layout o-layout--justify-center o-layout--align-center">
                 <div class="o-layout__item">
-                    <a class="o-box-link" href="Page_Animal_Detail.html?id=x">
+                    <a class="o-box-link js-animal" data-animal-id="${Animal.id}">
                         <div class="o-box">
                               <h3>${Animal.animal_type}</h3>
                         </div>
@@ -49,6 +58,22 @@ const ShowAnimals = function (jsonObject) {
     htmlAnimals.innerHTML = html;
   } catch (ex) {
     console.info(ex);
+  }
+  ListenToAnimalsCard(jsonObject);
+};
+
+const ListenToAnimalsCard = function (listAnimals) {
+  const htmlAnimalCards = document.querySelectorAll('.js-animal');
+  for (let animals of htmlAnimalCards) {
+    animals.addEventListener('click', function () {
+      console.log(animals);
+      const ChosenAnimal = this.getAttribute('data-animal-id');
+      for (let animal of listAnimals) {
+        if (animal.id == ChosenAnimal) {
+          openForm(animal);
+        }
+      }
+    });
   }
 };
 
