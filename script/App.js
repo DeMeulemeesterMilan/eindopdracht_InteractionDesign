@@ -1,4 +1,17 @@
-let htmlAnimals;
+let htmlAnimals,
+  animalName,
+  animalLatinName,
+  animelType,
+  animalDiet,
+  animalHabitat,
+  animalActive,
+  animalGeo,
+  animalPhoto,
+  animalLifespan,
+  animalMinLength,
+  animalMaxLength,
+  animalMinWeight,
+  animalMaxWeight;
 
 window.addEventListener('load', function () {
   setTimeout(function open(event) {
@@ -25,11 +38,46 @@ const popUpChoise = function () {
 function openForm(chosenanimal) {
   document.getElementById('myForm').style.display = 'block';
   console.log(chosenanimal);
+  document
+    .querySelector('.o-grid-container')
+    .style.setProperty('overflow-y', 'hidden');
+  document
+    .querySelector('.o-grid-container-animals')
+    .style.setProperty('overflow-y', 'hidden');
+  ShowAnimalData(chosenanimal);
 }
 
 function closeForm() {
   document.getElementById('myForm').style.display = 'none';
 }
+
+const ShowAnimalData = function (chosenanimal) {
+  console.log(chosenanimal);
+  const length = document.querySelector('.js-Length');
+  const weight = document.querySelector('.js-Weight');
+  const continet = document.querySelector(
+    `.js-${chosenanimal.continent.replace(/\s+/g, '')}`
+  );
+
+  try {
+    animalPhoto.src = chosenanimal.image;
+    animalPhoto.alt = chosenanimal.name;
+    animalName.innerHTML = chosenanimal.name;
+    animalLatinName.innerHTML = chosenanimal.latinName;
+    animelType.innerHTML = chosenanimal.type;
+    animalGeo.innerHTML = chosenanimal.continent;
+    animalMinLength.innerHTML = chosenanimal.minLength;
+    animalMaxLength.innerHTML = chosenanimal.maxLength;
+    animalMinWeight.innerHTML = chosenanimal.minWeight;
+    animalMaxWeight.innerHTML = chosenanimal.maxWeight;
+    continet.style.setProperty('fill', 'Red');
+
+    length.style.setProperty('width', '25%');
+    weight.style.setProperty('width', '75%');
+  } catch (error) {
+    console.info(error);
+  }
+};
 
 const ShowAnimals = function (jsonObject) {
   console.log(jsonObject);
@@ -41,14 +89,14 @@ const ShowAnimals = function (jsonObject) {
                 <div class="o-layout__item">
                     <a class="o-box-link js-animal" data-animal-id="${Animal.id}">
                         <div class="o-box">
-                              <h3>${Animal.animal_type}</h3>
+                              <h3>${Animal.type}</h3>
                         </div>
                         <div class="o-inner-box">
-                            <div><img class="image-animal" src="${Animal.image_link}"
+                            <div><img class="image-animal" src="${Animal.image}"
                                     alt="${Animal.name}" />
                             </div>
                             <p class="o-inner-box-title o-inner-box-mdtext">${Animal.name}</p>
-                            <p class="o-inner-box-text o-inner-box-normaltext">${Animal.latin_name}</p>
+                            <p class="o-inner-box-text o-inner-box-normaltext">${Animal.latinName}</p>
                         </div>
                     </a>
                 </div>
@@ -84,9 +132,22 @@ const getData = (endpoint) => {
 };
 
 const init = function (total) {
-  const endpoint = `https://zoo-animal-api.herokuapp.com/animals/rand/${total}`;
+  const endpoint = `https://zoo-animals.azurewebsites.net/api/RandomAnimals/${total}`;
 
   htmlAnimals = document.querySelector('.js-animals');
+  animalName = document.querySelector('.js-AnimalData-Name');
+  animalLatinName = document.querySelector('.js-AnimalData-LName');
+  animelType = document.querySelector('.js-AnimalData-Type');
+  animalDiet = document.querySelector('.js-AnimalData-Diet');
+  animalHabitat = document.querySelector('.js-AnimalData-Habitat');
+  animalActive = document.querySelector('.js-AnimalData-Active');
+  animalGeo = document.querySelector('.js-AnimalData-Geo');
+  animalPhoto = document.querySelector('.js-AnimalData-Img');
+  animalLifespan = document.querySelector('.js-AnimalData-Life');
+  animalMinLength = document.querySelector('.js-AnimalData-MinL');
+  animalMaxLength = document.querySelector('.js-AnimalData-MaxL');
+  animalMinWeight = document.querySelector('.js-AnimalData-MinW');
+  animalMaxWeight = document.querySelector('.js-AnimalData-MaxW');
 
   getData(endpoint).then(ShowAnimals);
 };
