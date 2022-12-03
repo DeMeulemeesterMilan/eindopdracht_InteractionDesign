@@ -58,6 +58,8 @@ const ShowAnimalData = function (chosenanimal) {
   const continet = document.querySelector(
     `.js-${chosenanimal.continent.replace(/\s+/g, '')}`
   );
+  let weigthPercentage,
+    lengthPercentage = 0;
 
   try {
     animalPhoto.src = chosenanimal.image;
@@ -72,8 +74,18 @@ const ShowAnimalData = function (chosenanimal) {
     animalMaxWeight.innerHTML = chosenanimal.maxWeight;
     continet.style.setProperty('fill', 'Red');
 
-    length.style.setProperty('width', '25%');
-    weight.style.setProperty('width', '75%');
+    weigthPercentage =
+      ((chosenanimal.maxWeight - chosenanimal.minWeight) /
+        chosenanimal.commonWeight) *
+      100;
+    lengthPercentage =
+      ((chosenanimal.maxLength - chosenanimal.minLength) /
+        chosenanimal.commonLength) *
+      100;
+    console.log(Math.round(weigthPercentage));
+    console.log(Math.round(lengthPercentage));
+    length.style.setProperty('width', `${Math.round(lengthPercentage)}%`);
+    weight.style.setProperty('width', `${Math.round(weigthPercentage)}%`);
   } catch (error) {
     console.info(error);
   }
