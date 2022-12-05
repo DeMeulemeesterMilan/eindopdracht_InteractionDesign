@@ -235,6 +235,10 @@ input::placeholder {
     overflow-y: auto;
 }
 
+.form-popup svg:active{
+    transform: scale(1.5);
+}
+
 /* Add styles to the form container */
 .form-container {
     width: 100%;
@@ -373,6 +377,16 @@ input::placeholder {
     }
 }
 
+@media (min-width: 1200px) {
+    .form-popup {
+        left: 12.5%;
+        bottom: 12.5%;
+        margin: auto;
+        height: 75%;
+        width: 75%;
+    }
+}
+
 /*------------------------------------*\
 #OBJECTS
 \*------------------------------------*/
@@ -393,7 +407,6 @@ input::placeholder {
 
 .o-grid-container-animals {
     display: grid;
-    grid-template-columns: repeat(5, minmax(12.5rem, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(12.5rem, 1fr));
     gap: 0.625rem;
     height: 80%;
@@ -411,12 +424,19 @@ input::placeholder {
 
 @media (min-width: 360px) {
     .o-grid-container-animals {
-        grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+        grid-template-columns: repeat(1, minmax(12.5rem, 1fr));
         row-gap: 1.5625rem;
     }
 }
 
 @media (min-width: 560px) {
+    .o-grid-container-animals {
+        grid-template-columns: repeat(2, minmax(12.5rem, 1fr));
+        row-gap: 3.125rem;
+    }
+}
+
+@media (min-width: 1200px) {
     .o-grid-container-animals {
         grid-template-columns: repeat(4, minmax(12.5rem, 1fr));
         row-gap: 3.125rem;
@@ -718,16 +738,11 @@ input::placeholder {
     margin-bottom: 0.25rem;
 }
 
-.o-inner-box-image-animal {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-img{
+.o-inner-box img{
     width: 18.75rem;
-    height: 100%;
-    object-fit: contain;
+    height: 18.75rem;
+    object-fit: cover;
+    object-position: top;
 }
 
 @media (min-width: 360px) {
@@ -970,9 +985,4 @@ img{
     h3 {
         page-break-after: avoid;
     }
-}
-
-.is-night {
-    --color-front: var(--global-color-back);
-    --color-back: var(--global-color-front);
 }
