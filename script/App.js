@@ -19,19 +19,27 @@ window.addEventListener('load', function () {
   }, 1000);
 });
 
+const loadingAnimals = function (amount) {
+  const background = document.querySelector('.js-logo-background');
+  document.querySelector('.popup-loading').style.display = 'block';
+
+  background.style.setProperty('fill', 'Hotpink');
+  setTimeout(init, 2300, amount);
+};
+
 const popUpChoise = function () {
   const oneAnimalButton = document.querySelector('.js-oneAnimal');
   const multipleAnimalsButton = document.querySelector('.js-multipleAnimals');
   const totalAnimals = document.querySelector('.js-totalAnimals');
 
   oneAnimalButton.addEventListener('click', function () {
-    document.querySelector('.popup').style.display = 'none';
-    init(1);
+    document.querySelector('.popup-choise').style.display = 'none';
+    loadingAnimals(1);
   });
 
   multipleAnimalsButton.addEventListener('click', function () {
-    document.querySelector('.popup').style.display = 'none';
-    init(totalAnimals.value);
+    document.querySelector('.popup-choise').style.display = 'none';
+    loadingAnimals(totalAnimals.value);
   });
 };
 
@@ -162,6 +170,7 @@ const init = function (total) {
   animalMaxWeight = document.querySelector('.js-AnimalData-MaxW');
 
   getData(endpoint).then(ShowAnimals);
+  document.querySelector('.popup').style.display = 'none';
 };
 
 document.addEventListener('DOMContentLoaded', async function () {
