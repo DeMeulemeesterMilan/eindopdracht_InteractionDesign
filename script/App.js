@@ -12,7 +12,8 @@ let htmlAnimals,
   animalMaxLength,
   animalMinWeight,
   animalMaxWeight,
-  previousAnimal;
+  previousAnimal,
+  continet;
 
 window.addEventListener('load', function () {
   setTimeout(function open(event) {
@@ -46,6 +47,7 @@ const popUpChoise = function () {
 
 function openForm(chosenanimal) {
   document.getElementById('myForm').style.display = 'block';
+  document.getElementById('myFormBackground').style.display = 'block';
   console.log(chosenanimal);
   document.querySelector('.js-body').style.setProperty('overflow-y', 'hidden');
   ShowAnimalData(chosenanimal);
@@ -54,6 +56,8 @@ function openForm(chosenanimal) {
 
 function closeForm() {
   document.getElementById('myForm').style.display = 'none';
+  document.getElementById('myFormBackground').style.display = 'none';
+  continet.style.setProperty('fill', 'none');
   document.querySelector('.js-body').style.setProperty('overflow-y', 'auto');
 }
 
@@ -61,10 +65,9 @@ const ShowAnimalData = function (chosenanimal) {
   console.log(chosenanimal);
   const length = document.querySelector('.js-Length');
   const weight = document.querySelector('.js-Weight');
-  const continet = document.querySelector(
+  continet = document.querySelector(
     `.js-${chosenanimal.continent.replace(/\s+/g, '')}`
   );
-  continet.style.setProperty('fill', 'none');
   let weigthPercentage,
     lengthPercentage = 0;
 
