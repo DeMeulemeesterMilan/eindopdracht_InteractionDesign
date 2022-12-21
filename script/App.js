@@ -106,10 +106,11 @@ const ShowAnimals = function (jsonObject) {
   console.log(jsonObject);
   try {
     let html = '';
+    let counter = 1;
     for (let Animal of jsonObject) {
       html += `<div class="o-grid-item-animalcard" >
             <div class="o-layout o-layout--justify-center o-layout--align-center">
-                <div class="o-layout__item">
+                <div class="o-layout__item" tabindex = "${counter}">
                     <a class="o-box-link js-animal" data-animal-id="${Animal.id}">
                         <div class="o-box">
                               <h3>${Animal.type}</h3>
@@ -125,6 +126,7 @@ const ShowAnimals = function (jsonObject) {
                 </div>
             </div>
         </div>`;
+      counter++;
     }
     htmlAnimals.innerHTML = html;
   } catch (ex) {
@@ -137,6 +139,17 @@ const ShowAnimals = function (jsonObject) {
 const ListenToAnimalsCard = function (listAnimals) {
   const htmlAnimalCards = document.querySelectorAll('.js-animal');
   for (let animals of htmlAnimalCards) {
+    animals.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        console.log(animals);
+        const ChosenAnimal = this.getAttribute('data-animal-id');
+        for (let animal of listAnimals) {
+          if (animal.id == ChosenAnimal) {
+            openForm(animal);
+          }
+        }
+      }
+    });
     animals.addEventListener('click', function () {
       console.log(animals);
       const ChosenAnimal = this.getAttribute('data-animal-id');
@@ -151,6 +164,11 @@ const ListenToAnimalsCard = function (listAnimals) {
 
 const ListenToHomeButton = function () {
   const htmlHome = document.querySelector('.js-home-btn');
+  htmlHome.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      location.reload();
+    }
+  });
   htmlHome.addEventListener('click', function () {
     location.reload();
   });
@@ -158,6 +176,11 @@ const ListenToHomeButton = function () {
 
 const ListenToCloseButton = function () {
   const htmlClose = document.querySelector('.js-close');
+  htmlClose.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      closeForm();
+    }
+  });
   htmlClose.addEventListener('click', function () {
     closeForm();
   });
