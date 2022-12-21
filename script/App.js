@@ -11,7 +11,8 @@ let htmlAnimals,
   animalMinLength,
   animalMaxLength,
   animalMinWeight,
-  animalMaxWeight;
+  animalMaxWeight,
+  previousAnimal;
 
 window.addEventListener('load', function () {
   setTimeout(function open(event) {
@@ -23,7 +24,7 @@ const loadingAnimals = function (amount) {
   const background = document.querySelector('.js-logo-background');
   document.querySelector('.popup-loading').style.display = 'block';
 
-  background.style.setProperty('fill', 'Hotpink');
+  background.style.setProperty('fill', '#0F3557');
   setTimeout(init, 2300, amount);
 };
 
@@ -46,17 +47,14 @@ const popUpChoise = function () {
 function openForm(chosenanimal) {
   document.getElementById('myForm').style.display = 'block';
   console.log(chosenanimal);
-  document
-    .querySelector('.o-grid-container')
-    .style.setProperty('overflow-y', 'hidden');
-  document
-    .querySelector('.o-grid-container-animals')
-    .style.setProperty('overflow-y', 'hidden');
+  document.querySelector('.js-body').style.setProperty('overflow-y', 'hidden');
   ShowAnimalData(chosenanimal);
+  ListenToCloseButton();
 }
 
 function closeForm() {
   document.getElementById('myForm').style.display = 'none';
+  document.querySelector('.js-body').style.setProperty('overflow-y', 'auto');
 }
 
 const ShowAnimalData = function (chosenanimal) {
@@ -66,6 +64,7 @@ const ShowAnimalData = function (chosenanimal) {
   const continet = document.querySelector(
     `.js-${chosenanimal.continent.replace(/\s+/g, '')}`
   );
+  continet.style.setProperty('fill', 'none');
   let weigthPercentage,
     lengthPercentage = 0;
 
@@ -94,6 +93,7 @@ const ShowAnimalData = function (chosenanimal) {
     console.log(Math.round(lengthPercentage));
     length.style.setProperty('width', `${Math.round(lengthPercentage)}%`);
     weight.style.setProperty('width', `${Math.round(weigthPercentage)}%`);
+    previousAnimal = continet;
   } catch (error) {
     console.info(error);
   }
@@ -104,7 +104,7 @@ const ShowAnimals = function (jsonObject) {
   try {
     let html = '';
     for (let Animal of jsonObject) {
-      html += `<div class="o-grid-item-animalcard">
+      html += `<div class="o-grid-item-animalcard" >
             <div class="o-layout o-layout--justify-center o-layout--align-center">
                 <div class="o-layout__item">
                     <a class="o-box-link js-animal" data-animal-id="${Animal.id}">
@@ -128,6 +128,7 @@ const ShowAnimals = function (jsonObject) {
     console.info(ex);
   }
   ListenToAnimalsCard(jsonObject);
+  ListenToHomeButton();
 };
 
 const ListenToAnimalsCard = function (listAnimals) {
@@ -143,6 +144,20 @@ const ListenToAnimalsCard = function (listAnimals) {
       }
     });
   }
+};
+
+const ListenToHomeButton = function () {
+  const htmlHome = document.querySelector('.js-home-btn');
+  htmlHome.addEventListener('click', function () {
+    location.reload();
+  });
+};
+
+const ListenToCloseButton = function () {
+  const htmlClose = document.querySelector('.js-close');
+  htmlClose.addEventListener('click', function () {
+    closeForm();
+  });
 };
 
 const getData = (endpoint) => {
