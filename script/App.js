@@ -106,12 +106,12 @@ const ShowAnimals = function (jsonObject) {
   console.log(jsonObject);
   try {
     let html = '';
-    let counter = 1;
+    let counter = 3;
     for (let Animal of jsonObject) {
       html += `<div class="o-grid-item-animalcard" >
             <div class="o-layout o-layout--justify-center o-layout--align-center">
-                <div class="o-layout__item" tabindex = "${counter}">
-                    <a class="o-box-link js-animal" data-animal-id="${Animal.id}">
+                <div class="o-layout__item">
+                    <a class="o-box-link js-animal" tabindex="${counter}" data-animal-id="${Animal.id}">
                         <div class="o-box">
                               <h3>${Animal.type}</h3>
                         </div>

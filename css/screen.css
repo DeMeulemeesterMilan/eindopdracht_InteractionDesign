@@ -259,6 +259,13 @@ input::placeholder {
     grid-column: 1;
 }
 
+.form-popup-header svg:hover,
+.form-popup-header svg:focus{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
 .form-popup-header__title{
     font-size: 1.5rem;
     font-weight: var(--global-font-weight-bold);
@@ -544,9 +551,10 @@ input::placeholder {
 
 }
 
-.o-grid-item-animalcard:hover{
+.o-grid-item-animalcard:hover,
+.o-grid-item-animalcard:focus{
     transform: scale(1.05);
-    transition: transform 0.5s;
+    transition: transform 0.5s ease;
 }
 
 .o-grid-item-header{
@@ -921,6 +929,12 @@ input::placeholder {
     display: flex;
     gap: .5rem;
     height: 2rem;
+}
+
+.c-header:hover, .c-header:focus {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .c-header h2{
