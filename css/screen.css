@@ -12,13 +12,18 @@
     --global-color-back: #eef3f7;
 
     --global-color-front-dark: #0b2841;
+    --global-color-white: white;
+    --global-color-gray: gray;
+    --global-color-lightgray: lightgray;
+    --global-color-red: red;
 
-    --color-back: var(--global-color-back);
-    --color-front: var(--global-color-front);
+    /* Box shadow */
+    --global-box-shadow: .25rem .25rem .125rem var(--global-color-gray);
 
-    /* opacity */
-
-    /* transitions */
+    /* fonts */
+    --global-font-weight-bold: 700;
+    --global-font-weight-normal: 400;
+    --global-font-weight-semibold: 600;
 }
 
 /*------------------------------------*\
@@ -38,8 +43,8 @@ html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--color-back);
-    color: var(--color-front);
+    background-color: var(--global-color-back);
+    color: var(--global-color-front);
 }
 
 *,
@@ -56,14 +61,14 @@ html {
 */
 
 ::-moz-selection {
-    background: var(--color-front);
-    color: white;
+    background: var(--global-color-front);
+    color: var(--global-color-white);
     text-shadow: none;
 }
 
 ::selection {
-    background: var(--color-front);
-    color: white;
+    background: var(--global-color-front);
+    color: var(--global-color-white);
     text-shadow: none;
 }
 
@@ -91,7 +96,7 @@ img {
 h1,
 h2,
 h3 {
-    font-weight: 700;
+    font-weight: var(--global-font-weight-bold);
 }
 
 h1 {
@@ -116,7 +121,7 @@ h4,
 h5,
 h6 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: var(--global-font-weight-semibold);
     line-height: 1.5rem;
     margin: 0 0 1.5rem;
 }
@@ -154,7 +159,7 @@ blockquote * {
 }
 
 figcaption {
-    font-weight: 400;
+    font-weight: var(--global-font-weight-normal);
     font-size: 0.75rem;
     line-height: 1rem;
     margin-top: 0.5rem;
@@ -163,25 +168,25 @@ figcaption {
 hr {
     border: 0;
     height: 0.0625rem;
-    background: LightGrey;
+    background: var(--global-color-lightgray);
     margin: 0 0 1.5rem;
 }
 
 a {
-    color: red;
-    outline-color: red;
+    color: var(--global-color-red);
+    outline-color: var(--global-color-red);
     outline-width: medium;
     outline-offset: 0.125rem;
 }
 
 a:visited,
 a:active {
-    color: red;
+    color: var(--global-color-red);
 }
 
 a:hover,
 a:focus {
-    color: red;
+    color: var(--global-color-red);
 }
 
 label,
@@ -194,14 +199,14 @@ select {
 }
 
 input::placeholder {
-    color: gray;
+    color: var(--global-color-gray);
 }
 
 .navigatie {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: white;
+    background-color: var(--global-color-white);
     z-index: 1;
 }
 
@@ -212,15 +217,15 @@ input::placeholder {
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
     background-color: #555;
-    color: white;
-    padding: 16px 20px;
+    color: var(--global-color-white);
+    padding: 1rem 1.25rem;
     border: none;
     cursor: pointer;
     opacity: 0.8;
     position: fixed;
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
+    bottom: 1.4375rem;
+    right: 1.75rem;
+    width: 17.5rem;
 }
 
 /* The popup form - hidden by default */
@@ -228,7 +233,7 @@ input::placeholder {
     display: none;
     position: fixed;
     bottom: 0;
-    border: 3px solid #f1f1f1;
+    border: .1875rem solid #f1f1f1;
     z-index: 9;
     height: 96%;
     width: 100%;
@@ -256,7 +261,7 @@ input::placeholder {
 
 .form-popup-header__title{
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--global-font-weight-bold);
     left: 25%;
     padding: 0;
 }
@@ -264,7 +269,7 @@ input::placeholder {
 /* Add styles to the form container */
 .form-container {
     width: 100%;
-    padding: 10px;
+    padding: .625rem;
     background-color: var(--global-color-back);
     display: grid;
     grid-template-columns: 1fr;
@@ -277,7 +282,7 @@ input::placeholder {
     grid-row: 1;
     text-align: center;
     font-size: 2.5rem;
-    font-weight: 700;
+    font-weight: var(--global-font-weight-bold);
     margin: 0;
     padding: 0;
 }
@@ -294,7 +299,7 @@ input::placeholder {
 /* Full-width input fields */
 .form-container p {
     width: 100%;
-    padding: 15px;
+    padding: .9375rem;
 }
 
 .form-container-data__name{
@@ -355,52 +360,29 @@ input::placeholder {
 .form-container-dataVisBack{
     width: 100%;
     height: 1.5rem;
-    background-color: white;
+    background-color: var(--global-color-white);
     margin-bottom: .625rem;
 }
 
 .form-container-dataVisLengthFor{
     width: 50%;
     height: 1.5rem;
-    background-color: lightgray;
+    background-color: var(--global-color-lightgray);
 }
 
 .form-container-dataVisWeightFor{
     width: 50%;
     height: 1.5rem;
-    background-color: lightgray;
+    background-color: var(--global-color-lightgray);
 }
 
 .form-container-underline{
-    border-bottom: solid 2px lightgray;
-}
-
-/* Set a style for the submit/login button */
-.form-container .btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    opacity: 0.8;
-}
-
-/* Add a red background color to the cancel button */
-.form-container .cancel {
-    background-color: red;
-}
-
-/* Add some hover effects to buttons */
-.form-container .btn:hover,
-.open-button:hover {
-    opacity: 1;
+    border-bottom: solid .125rem var(--global-color-lightgray);
 }
 
 .popup {
     justify-content: center;
-    background-color: #ffffff;
+    background-color: var(--global-color-white);
     width: 28.125rem;
     padding: 1.875rem 2.5rem;
     position: absolute;
@@ -419,10 +401,6 @@ input::placeholder {
     scale: 1.05;
 }
 
-.popup-choise button:focus{
-    border: #e90faf;
-}
-
 .popup-loading{
     display: none;
 }
@@ -435,14 +413,14 @@ input::placeholder {
 }
 
 .popup-loading__image{
-    width: 100px;
-    height: 100px;
+    width: 6.25rem;
+    height: 6.25rem;
     border-radius: 50%;
     position: relative;
 }
 
 .popup-loading__image-background{
-    height: 50px;
+    height: 3.125rem;
     animation: progres 7s infinite linear;
 }
 
@@ -854,10 +832,10 @@ input::placeholder {
 .o-box{
     margin: auto;
     text-align: center;
-    background: white;
+    background: var(--global-color-white);
     padding: .0625rem;
     color: var(--global-color-front);
-    box-shadow: 4px 4px 2px gray;
+    box-shadow: var(--global-box-shadow);
 }
 
 .o-box-link {
@@ -865,9 +843,9 @@ input::placeholder {
 }
 
 .o-inner-box {
-    background: white;    
+    background: var(--global-color-white);    
     margin: auto;
-    box-shadow: 4px 4px 2px gray;
+    box-shadow: var(--global-box-shadow);
 }
 
 .o-inner-box-title {
@@ -947,7 +925,7 @@ input::placeholder {
 
 .c-header h2{
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--global-font-weight-bold);
     line-height: 1.5rem;
     margin-bottom: auto;
     margin-top: auto;
@@ -958,7 +936,7 @@ input::placeholder {
     align-items: center;
     font-size: 0.5rem;
     line-height: 1rem;
-    font-weight: 400;
+    font-weight: var(--global-font-weight-normal);
     gap: 0.5rem;
     height: 2rem;
     width: 2rem;
@@ -967,7 +945,7 @@ input::placeholder {
 
 .c-header__text{
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--global-font-weight-bold);
     line-height: 1.5rem;
     margin-bottom: 0;
 }
@@ -998,7 +976,7 @@ input::placeholder {
         font-size: 2.25rem;
         line-height: 2.875rem;
         margin-bottom: 0.625rem;
-        font-weight: bold;
+        font-weight: var(--global-font-weight-bold);
     }
 }
 
@@ -1007,7 +985,7 @@ input::placeholder {
         font-size: 2.4375rem;
         line-height: 2.875rem;
         margin-bottom: 0.625rem;
-        font-weight: bold;
+        font-weight: var(--global-font-weight-bold);
     }
 }
 
@@ -1015,7 +993,7 @@ input::placeholder {
     .c-lead--xl {
         font-size: 3rem;
         line-height: 3.5rem;
-        font-weight: bold;
+        font-weight: var(--global-font-weight-bold);
     }
 }
 
@@ -1023,7 +1001,7 @@ input::placeholder {
     .c-lead--xl {
         font-size: 4.125rem;
         line-height: 4.5rem;
-        font-weight: bold;
+        font-weight: var(--global-font-weight-bold);
     }
 }
 
@@ -1123,7 +1101,7 @@ input::placeholder {
     }
     pre,
     blockquote {
-        border: 1px solid #999;
+        border: .0625rem solid var(--global-color-lightgray);
         page-break-inside: avoid;
     }
     /*
